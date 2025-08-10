@@ -17,6 +17,9 @@ app.get("/health", async (c) => {
   }
 });
 
+import { registerIngestionRoutes } from "./routes/ingest";
+registerIngestionRoutes(app);
+
 export default app;
 
 if (import.meta.main) {

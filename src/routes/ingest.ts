@@ -30,7 +30,7 @@ export function registerIngestionRoutes(app: Hono) {
       const inserted = await insertChunks(
         db,
         {
-          documentId: doc.id,
+          documentId: (doc as any).id as string,
           parts: parts.map((p, i) => ({ order: i, content: p })),
         }
       );

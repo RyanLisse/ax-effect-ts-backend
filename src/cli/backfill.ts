@@ -6,9 +6,10 @@ import { sql } from "drizzle-orm";
 const db = createDb();
 const embedder = new OpenAIEmbedder();
 
-const rows = await db.execute<{ id: string; content: string }>(sql`SELECT id, content FROM chunks WHERE embedding IS NULL LIMIT 256`);
-const embeddings = await embedder.embedMany(rows.map((r) => r.content));
+type Row = { id: string; content: string }
+const rows = (await db.execute<Row>(sql`SELECT id, content FROM chunks WHERE embedding IS NULL LIMIT 256`)) as any as Row[];
+const embeddings = await embedder.embedMany((rows as Row[]).map((r: Row) => r.content));
 for (let i = 0; i < rows.length; i++) {
-  await db.execute(sql`UPDATE chunks SET embedding = ${embeddings[i]} WHERE id = ${rows[i].id}`);
+  await db.execute(sql`UPDATE chunks SET embedding = ${embeddings[i]} WHERE id = ${((rows as Row[])[i]).id}`);
 }
 console.log(`Embedded ${rows.length} chunks`);

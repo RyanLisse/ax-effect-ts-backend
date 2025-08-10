@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import app from "../server";
 
-function jsonResponse(res: Response) {
-  return res.json();
+function jsonResponse(res: Response): Promise<any> {
+  return res.json() as any;
 }
 
 describe("POST /api/ingest", () => {

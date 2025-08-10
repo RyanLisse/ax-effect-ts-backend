@@ -29,4 +29,5 @@ export function registerDocumentRoutes(app: Hono) {
     await db.delete(documents).where(eq(documents.id, id));
     return c.json({ ok: true });
   });
-});
+
+}

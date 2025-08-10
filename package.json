@@ -22,7 +22,8 @@
     "lint": "eslint .",
     "build": "tsc -p tsconfig.json",
     "chat:dev": "bun src/server.ts",
-    "backfill": "bun src/cli/backfill.ts"
+    "backfill": "bun src/cli/backfill.ts",
+    "eval": "bun src/cli/eval.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^2.0.8",

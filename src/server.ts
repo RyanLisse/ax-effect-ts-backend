@@ -19,6 +19,19 @@ app.get("/health", async (c) => {
 
 import { registerIngestionRoutes } from "./routes/ingest";
 registerIngestionRoutes(app);
+import { registerChatRoutes } from "./routes/chat";
+import { registerMetricsRoutes } from "./routes/metrics";
+import { registerGraphRoutes } from "./routes/graph";
+import { registerProgressRoutes } from "./routes/progress";
+import { registerDocumentRoutes } from "./routes/documents";
+import { registerOpenApiRoute } from "./routes/openapi";
+
+registerChatRoutes(app);
+registerMetricsRoutes(app);
+registerGraphRoutes(app);
+registerProgressRoutes(app);
+registerDocumentRoutes(app);
+registerOpenApiRoute(app);
 
 export default app;
 
